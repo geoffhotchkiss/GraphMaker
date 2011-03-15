@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Graphs are fun!</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script type="text/javascript" src="graphs.js"></script>
+  </head>
+
+  <body onload="init();">
+    <div id = "contents">
+      <h1>Make a graph</h1>
+
+      <div id = "graph">
+        <canvas id="graph_canvas" width="500" height="500" tabindex="1">
+          You don't support canvas :'( 
+        </canvas>
+      </div>
+
+      <div id = "graph_properties">
+
+        <div id = "graph_options">
+
+          <form name="options" metod="get">
+            <input type="radio" name="mode" value="vertex_mode" checked> 
+              Vertex Mode <br/>
+            <input type="radio" name="mode" value="edge_mode">
+              Edge Mode <br/>
+            <input type="radio" name="edge_style" value="straight"
+              onclick="draw()" checked> Straight Edges <br/>
+            <input type="radio" name="edge_style" value="quadratic"
+              onclick="draw()"> Quadratic Edges <br/>
+            <input type="checkbox" name="edge_intersection" value="no"
+              onclick="draw();"/> Display edge intersection </br>
+            Number of vertices for K<sub>n</sub>: 
+            <input type="text" name="user_num" size=1 maxlength=2
+              value="5" /> <input type="button" value="Draw" 
+              onclick="complete_graph();"/>
+              
+            <input type="button" value="Reset" 
+              onclick="reset_everything();"/>
+          </form>
+
+        </div>
+
+        <div id="stats">
+          Number of vertices: <span id="num_v">0</span></br>
+          Number of edges: <span id="num_e">0</span>
+        </div>
+
+        <div id="graph_area">
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
