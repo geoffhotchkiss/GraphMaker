@@ -333,13 +333,12 @@ function get_intersections(e) {
       var min2 = Math.min(x3,x4);
       var max2 = Math.max(x3,x4);
 
-      /**
-      context.beginPath();
-      context.fillStyle = "pink";
-      context.arc(x, m1*(x - x1) + y1, radius, 0, 2*Math.PI, true);
-      context.fill();
-      */
-
+      if(document.options.edge_intersection_point.checked) {
+        context.beginPath();
+        context.fillStyle = "pink";
+        context.arc(x, m1*(x - x1) + y1, radius, 0, 2*Math.PI, true);
+        context.fill();
+      }
 
       x = parseInt(x+1);
       if( min1 < x - 1 && x < max1 && min2 < x - 1 && x < max2 ) {
