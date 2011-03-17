@@ -8,6 +8,7 @@ var edge_selected_color = "red";
 var vertex_selected_color = "blue";
 var edge_intersection_color = "pink";
 var current_vertex;
+var curr_idx = -1;
 var previous_vertex;
 var clicked_vertex = -1;
 var debug = false;
@@ -88,6 +89,9 @@ function my_mouse_down(event) {
   }
   var clicked_index = get_clicked(x,y);
   clicked_vertex = clicked_index;
+  if(clicked_vertex != -1) {
+    curr_idx = clicked_vertex;
+  }
   // vertex mode
   if(document.options.mode[0].checked) {
     previous_vertex = null;
@@ -208,6 +212,10 @@ function write_stats() {
 function write_vertex_stats() {
   var num_v = document.getElementById("num_v"); 
   num_v.innerHTML = vertices.length;
+  var thing = document.getElementById("selected_vertex");
+  if(curr_idx != -1) {
+    thing.innerHTML = curr_idx + 1; 
+  }
 }
 
 function write_edge_stats() {
@@ -326,7 +334,14 @@ function get_intersections(e) {
       var m1 = (y1 - y2) / (x1 - x2);
       var m2 = (y3 - y4) / (x3 - x4);
 
-      var x = (-1 * m2*x3 + y3 + m1 * x1 - y1) / (m1 - m2);
+      var x;
+
+      if(Math.abs(x1 - x2) < 1e-12) {
+        x = x1;
+      }
+      else {
+        x = (-1 * m2*x3 + y3 + m1 * x1 - y1) / (m1 - m2);
+      }
 
       var min1 = Math.min(x1,x2);
       var max1 = Math.max(x1,x2);
